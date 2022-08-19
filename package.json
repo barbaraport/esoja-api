@@ -10,7 +10,7 @@
     "npm": "8.3.1"
   },
   "scripts": {
-    "start:local": "NODE_ENV=local nest start --debug --watch",
+    "start:local": "SET NODE_ENV=local && nest start --debug --watch",
     "start:homolog": "NODE_ENV=homolog nest start --debug --watch",
     "start:prod": "node dist/main",
     "heroku-prebuild": "rm -rf dist && npx prisma migrate deploy && npx prisma generate",
