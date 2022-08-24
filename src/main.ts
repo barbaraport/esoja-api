@@ -16,7 +16,7 @@ async function bootstrap() {
     methods: 'GET, POST, PUT, DELETE, UPDATE, OPTIONS',
   });
 
-  await app.listen(port, ipAddress);
+  await app.listen(port, 'localhost');
 
   console.log(`Server running at ${ipAddress}:${port}`);
   console.log(`env: .env.${process.env.NODE_ENV}`);
