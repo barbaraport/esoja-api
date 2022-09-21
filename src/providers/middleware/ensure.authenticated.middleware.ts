@@ -13,7 +13,7 @@ export class EnsureAuthenticated implements NestMiddleware {
 
     const parts = AuthHeader.split(' ');
 
-    if (parts.length !== 2) return this.accessDenied(req.url, 'Token malformatted', res);
+    if (parts.length !== 2) return this.accessDenied(req.url, 'Token malformed', res);
 
     const [bearer, token] = parts;
 
