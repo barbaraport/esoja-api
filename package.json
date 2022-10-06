@@ -10,9 +10,9 @@
     "npm": "8.3.1"
   },
   "scripts": {
-    "start:local": "nest start --debug --watch",
-    "start:homolog": "NODE_ENV=homolog nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "dev": "nest start --debug --watch",
+    "homolog": "NODE_ENV=homolog nest start --debug --watch",
+    "prod": "node dist/main",
     "heroku-prebuild": "rm -rf dist && npx prisma migrate deploy && npx prisma generate",
     "build": "nest build",
     "format": "prettier --write --loglevel=error \"src/**/*.ts\"",
