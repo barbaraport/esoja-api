@@ -10,5 +10,5 @@ Primeiramente, clone o repositório. Atente-se sobre o caminho do clone dentro d
 5. Dentro abra o projeto na sua *IDE* de preferência. Dentro da pasta raiz (`esoja-api`), crie um arquivo `.env` seguindo de exemplo o arquivo `.env.example`. Altere o conteúdo de cada variável de acordo com a sua necessidade, pois elas são utilizadas dentro do código-fonte.
 6. Lembre-se de sempre estar na mesma rede que o seu celular!
 7. Abra o terminal e digite `npm install` para baixar todas as dependências do projeto, talvez seja necessário adicionar ao comando `--legacy-peer-deps` ou `--force`.
-8. Na pasta raiz, abra o terminal e digite `npx prisma generate` e depois `npx prisma migrate deploy`.
+8. Na pasta raiz, abra o terminal e digite `npx prisma generate`, `npx prisma migrate dev` e, por último, `npx prisma migrate deploy`. Caso você já tenha o banco de dados em alguma versão mais antiga, será necessário apagar as tabelas para que elas sejam recriadas.
 9. Depois disso, dentro da pasta raiz, abra o terminal e digite `npm run start:local` para executar o back-end. :warning: Caso esteja executando o *app* também, não se esqueça de trocar o *ip* e a porta no arquivo `\esoja-mobile\src\data\services\api.ts`. :warning:
