@@ -108,8 +108,8 @@ model CultiveSamples {
   name         String
   description  String?
 
-  photoPlantA String
-  photoPlantB String
+  photoPlantA String @db.Text
+  photoPlantB String @db.Text
 
   podsPlantA Int
   podsPlantB Int
