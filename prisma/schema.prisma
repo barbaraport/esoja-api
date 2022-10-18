@@ -107,8 +107,18 @@ model CultiveSamples {
   id           String  @id @default(uuid())
   name         String
   description  String?
-  grainsPlant1 Int
-  grainsPlant2 Int
+
+  photoPlantA String
+  photoPlantB String
+
+  podsPlantA Int
+  podsPlantB Int
+
+  heightPlantA Float
+  heightPlantB Float
+
+  stagePlantA String
+  stagePlantB String
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
