@@ -117,8 +117,8 @@ model CultiveSamples {
   heightPlantA Float
   heightPlantB Float
 
-  stagePlantA String
-  stagePlantB String
+  stagePlantA Int
+  stagePlantB Int
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
