@@ -63,8 +63,8 @@ export class ProductivityService {
     let total = 0;
 
     samples.forEach((sample) => {
-      total = total + sample.grainsPlant1;
-      total = total + sample.grainsPlant2;
+      total = total + sample.podsPlantA;
+      total = total + sample.podsPlantB;
     });
 
     return total;
