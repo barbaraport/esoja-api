@@ -12,6 +12,21 @@ export class SampleService {
     private readonly productivityService: ProductivityService,
   ) {}
 
+  private async getPodsFoundForImage(base64Image: string) {
+    const requestConfigurations: RequestInit = {
+      method: "POST",
+      body: JSON.stringify({base64Image: base64Image})
+    };
+
+    const response = await fetch("http://localhost:5000/countPods", requestConfigurations);
+
+    const responseData = await response.json() as {podsFound: number};
+
+    const podsFound = responseData['podsFound'];
+
+    return podsFound;
+  }
+
   async create(createDto: CreateSampleDto) {
     const cultive = await this.prisma.cultive.findUnique({ where: { id: createDto.cultiveId }, include: { samples: true } });
 
@@ -22,7 +37,19 @@ export class SampleService {
 
     if (cultive.samples.length) throw new BadRequestException('This cultive already has 3 samples');
 
-    const samples = await this.prisma.cultiveSamples.createMany({ data: createDto.samples.map((v) => ({ cultiveId: createDto.cultiveId, ...v })) });
+    const samplesData = createDto['samples'];
+
+    for (let i = 0; i < samplesData.length; i++) {
+      const sampleData = samplesData[i];
+
+      const podsFoundA = await this.getPodsFoundForImage(sampleData['photoPlantA']);
+      const podsFoundB = await this.getPodsFoundForImage(sampleData['photoPlantB']);
+
+      sampleData['podsPlantA'] = podsFoundA;
+      sampleData['podsPlantB'] = podsFoundB;
+    }
+
+    const samples = await this.prisma.cultiveSamples.createMany({data: [...createDto['samples'] as any]});
 
     await this.productivityService.setProductivity(cultive.id);
 

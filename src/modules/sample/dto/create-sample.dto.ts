@@ -19,16 +19,35 @@ class SampleDto {
   @IsNotEmpty()
   name: string;
 
+  @IsNumber()
+  @IsNotEmpty()
+  heightPlantA: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  heightPlantB: number;
+
   @IsString()
   @IsNotEmpty()
+  photoPlantA: string;
+
+  @IsString()
+  @IsNotEmpty()
+  photoPlantB: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  stagePlantA: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  stagePlantB: number;
+
+  @IsNumber()
   @IsOptional()
-  description: string;
+  podsPlantA?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  grainsPlant1: number;
-
-  @IsNumber()
-  @IsNotEmpty()
-  grainsPlant2: number;
+  @IsOptional()
+  podsPlantB?: number;
 }
