@@ -106,10 +106,6 @@ model CultiveCoordinates {
 model CultiveSamples {
   id           String  @id @default(uuid())
   name         String
-  description  String?
-
-  grainsPlant1 Int
-  grainsPlant2 Int
 
   photoPlantA String @db.Text
   photoPlantB String @db.Text
