@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsNumber, IsUrl } from 'class-validator';
+import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsUrl } from 'class-validator';
 
 export class UpdateCultiveSampleInformationDto {
   @IsInt()
@@ -10,6 +10,6 @@ export class UpdateCultiveSampleInformationDto {
   metersBetweenPlants: number;
 
   @IsUrl()
-  @IsNotEmpty()
-  photo: string;
+  @IsOptional()
+  photo?: string;
 }

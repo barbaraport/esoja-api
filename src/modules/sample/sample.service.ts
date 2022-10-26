@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from '@src/providers/prisma/prisma.service';
 import { QuerybuilderService } from '@src/providers/prisma/querybuilder/querybuilder.service';
+import axios from 'axios';
 import { ProductivityService } from '../cultive/productivity/productivity.service';
 import { CreateSampleDto } from './dto/create-sample.dto';
 
@@ -13,14 +14,9 @@ export class SampleService {
   ) {}
 
   private async getPodsFoundForImage(base64Image: string) {
-    const requestConfigurations: RequestInit = {
-      method: "POST",
-      body: JSON.stringify({base64Image: base64Image})
-    };
+    const response = await axios.post("http://localhost:5000/countPods", JSON.stringify({base64Image: base64Image}));
 
-    const response = await fetch("http://localhost:5000/countPods", requestConfigurations);
-
-    const responseData = await response.json() as {podsFound: number};
+    const responseData = response.data as {podsFound: number};
 
     const podsFound = responseData['podsFound'];
 
@@ -28,15 +24,20 @@ export class SampleService {
   }
 
   async create(createDto: CreateSampleDto) {
+    console.log('oi 1');
     const cultive = await this.prisma.cultive.findUnique({ where: { id: createDto.cultiveId }, include: { samples: true } });
 
+    console.log('oi 2');
     if (!cultive) throw new BadRequestException('Cultive not found');
 
+
+    console.log('oi 3');
     if (!cultive.metersBetweenPlants || !cultive.plantsPerMeter)
       throw new BadRequestException(`Sample information don't exists yet, please do this first`);
 
+    console.log('oi 4');
     if (cultive.samples.length) throw new BadRequestException('This cultive already has 3 samples');
-
+    console.log(createDto);
     const samplesData = createDto['samples'];
 
     for (let i = 0; i < samplesData.length; i++) {
