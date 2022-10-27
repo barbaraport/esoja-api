@@ -9,7 +9,7 @@ export class UpdateCultiveSampleInformationDto {
   @IsNotEmpty()
   metersBetweenPlants: number;
 
-  @IsUrl()
+  //@IsUrl()
   @IsOptional()
   photo?: string;
 }

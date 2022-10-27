@@ -31,13 +31,12 @@ export class SampleService {
     if (!cultive) throw new BadRequestException('Cultive not found');
 
 
-    console.log('oi 3');
-    if (!cultive.metersBetweenPlants || !cultive.plantsPerMeter)
-      throw new BadRequestException(`Sample information don't exists yet, please do this first`);
+    // console.log('oi 3');
+    // if (!cultive.metersBetweenPlants || !cultive.plantsPerMeter)
+    //   throw new BadRequestException(`Sample information don't exists yet, please do this first`);
 
     console.log('oi 4');
     if (cultive.samples.length) throw new BadRequestException('This cultive already has 3 samples');
-    console.log(createDto);
     const samplesData = createDto['samples'];
 
     for (let i = 0; i < samplesData.length; i++) {
