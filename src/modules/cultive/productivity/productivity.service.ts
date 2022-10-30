@@ -7,25 +7,26 @@ export class ProductivityService {
   constructor(private readonly prisma: PrismaService) {}
 
   async setProductivity(cultiveId: string) {
-    const cultive = await this.prisma.cultive.findUnique({ where: { id: cultiveId }, include: { samples: true } });
+    // const cultive = await this.prisma.cultive.findUnique({ where: { id: cultiveId }, include: { samples: true } });
 
-    if (!cultive || cultive.samples.length !== 3) throw new BadRequestException(`Cultive not found or don't have all samples`);
+    // if (!cultive || cultive.samples.length !== 3) throw new BadRequestException(`Cultive not found or don't have all samples`);
 
-    const seedsTotal = this.countTotalSeeds(cultive.samples);
+    // const seedsTotal = this.countTotalSeeds(cultive.samples);
 
-    const seedsAverage = seedsTotal / 6; // 6 = number of plaints;
+    // const seedsAverage = seedsTotal / 6; // 6 = number of plaints;
 
-    const numberOfPlaintsPerHectares = this.plaintPerHectares(cultive);
+    // const numberOfPlaintsPerHectares = this.plaintPerHectares(cultive);
 
-    const weightPerGrain = 150; // will be used fixed value for grains = 150g
+    // const weightPerGrain = 150; // will be used fixed value for grains = 150g
 
-    const bagsPerHectares = this.calculateProductivity(numberOfPlaintsPerHectares, weightPerGrain, seedsAverage);
+    // const bagsPerHectares = this.calculateProductivity(numberOfPlaintsPerHectares, weightPerGrain, seedsAverage);
 
-    const tonPerHectares = (bagsPerHectares * 60) / 1000;
+    // const tonPerHectares = (bagsPerHectares * 60) / 1000;
 
     await this.prisma.cultive.update({
       where: { id: cultiveId },
-      data: { expectedProduction: tonPerHectares, expectedBagsPerHectares: bagsPerHectares },
+      // data: { expectedProduction: tonPerHectares, expectedBagsPerHectares: bagsPerHectares },
+      data: {expectedProduction: 0},
     });
   }
 

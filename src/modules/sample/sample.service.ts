@@ -53,7 +53,7 @@ export class SampleService {
     const samples = await this.prisma.cultiveSamples.createMany({data: [...createDto['samples'] as any]});
     console.log('ok');
 
-    // await this.productivityService.setProductivity(cultive.id);
+    await this.productivityService.setProductivity(cultive.id);
     console.log('productivity ok');
     return samples;
   }
