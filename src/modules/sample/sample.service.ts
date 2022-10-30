@@ -14,7 +14,7 @@ export class SampleService {
   ) {}
 
   private async getPodsFoundForImage(base64Image: string) {
-    const response = await axios.post("http://localhost:5000/countPods", JSON.stringify({base64Image: base64Image}));
+    const response = await axios.post("http://localhost:5000/countPods", {base64Image: base64Image});
 
     const responseData = response.data as {podsFound: number};
 
