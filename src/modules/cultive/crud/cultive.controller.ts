@@ -31,9 +31,9 @@ export class CultiveController {
     Ok(result);
   }
 
-  @Put('/sample-information/:id')
-  async updateSampleInformation(@Param() param: paramId, @Body() updateCultiveDto: any) {
-    await this.cultiveService.updateSampleInformation(param.id, updateCultiveDto);
+  @Put('/sample-information')
+  async updateSampleInformation(@Body() updateCultiveDto: UpdateCultiveSampleInformationDto) {
+    await this.cultiveService.updateSampleInformation(updateCultiveDto['id'], updateCultiveDto);
 
     Ok();
   }
