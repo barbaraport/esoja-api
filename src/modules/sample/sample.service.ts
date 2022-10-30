@@ -24,19 +24,18 @@ export class SampleService {
   }
 
   async create(createDto: CreateSampleDto) {
-    console.log('oi 1');
-    const cultive = await this.prisma.cultive.findUnique({ where: { id: createDto.cultiveId }, include: { samples: true } });
+    const cultive = await this.prisma.cultive.findUnique({
+      where: { id: createDto.cultiveId }, include: { samples: true }
+    });
 
-    console.log('oi 2');
     if (!cultive) throw new BadRequestException('Cultive not found');
-
 
     // console.log('oi 3');
     // if (!cultive.metersBetweenPlants || !cultive.plantsPerMeter)
     //   throw new BadRequestException(`Sample information don't exists yet, please do this first`);
 
-    console.log('oi 4');
     if (cultive.samples.length) throw new BadRequestException('This cultive already has 3 samples');
+
     const samplesData = createDto['samples'];
 
     for (let i = 0; i < samplesData.length; i++) {

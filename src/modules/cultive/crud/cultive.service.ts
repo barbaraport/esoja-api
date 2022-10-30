@@ -53,7 +53,12 @@ export class CultiveService {
 
     if (cultive.metersBetweenPlants || cultive.plantsPerMeter) throw new BadRequestException('Sample information already exists in this cultive');
 
-    await this.prisma.cultive.update({ where: { id: id }, data: updateDto });
+    const updateData = {
+      plantsPerMeter: updateDto['plantsPerMeter'],
+      metersBetweenPlants: updateDto['metersBetweenPlants']
+    };
+
+    await this.prisma.cultive.update({ where: { id: id }, data: updateData });
   }
 
   async update(id: string, updateDto: UpdateCultiveDto) {
