@@ -48,11 +48,11 @@ export class CultiveService {
 
   async updateSampleInformation(id: string, updateDto: UpdateCultiveSampleInformationDto) {
     const cultive = await this.prisma.cultive.findUnique({ where: { id: id } });
-
+    
     if (!cultive) throw new BadRequestException('Cultive not found');
-
-    if (cultive.metersBetweenPlants || cultive.plantsPerMeter) throw new BadRequestException('Sample information already exists in this cultive');
-
+    
+    // if (cultive.plantsPerMeter || cultive.metersBetweenPlants) throw new BadRequestException('Sample information already exists in this cultive');
+    
     const updateData = {
       plantsPerMeter: updateDto['plantsPerMeter'],
       metersBetweenPlants: updateDto['metersBetweenPlants']

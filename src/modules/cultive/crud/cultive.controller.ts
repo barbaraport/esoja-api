@@ -32,7 +32,7 @@ export class CultiveController {
   }
 
   @Put('/sample-information')
-  async updateSampleInformation(@Body() updateCultiveDto: UpdateCultiveSampleInformationDto) {
+  async updateSampleInformation(@Body() updateCultiveDto: any) {
     await this.cultiveService.updateSampleInformation(updateCultiveDto['id'], updateCultiveDto);
 
     Ok();

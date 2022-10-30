@@ -23,6 +23,5 @@ async function bootstrap() {
   await app.listen(port, ipAddress);
 
   console.log(`Server running at ${ipAddress}:${port}`);
-  console.log(`env: .env.${process.env.NODE_ENV}`);
 }
 bootstrap();
