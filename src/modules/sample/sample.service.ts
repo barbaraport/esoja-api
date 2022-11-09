@@ -14,9 +14,9 @@ export class SampleService {
   ) {}
 
   private async getPodsFoundForImage(base64Image: string) {
-    const response = await axios.post("http://localhost:5000/countPods", {base64Image: base64Image});
+    const response = await axios.post('http://localhost:5000/countPods', { base64Image: base64Image });
 
-    const responseData = response.data as {podsFound: number};
+    const responseData = response.data as { podsFound: number };
 
     const podsFound = responseData['podsFound'];
 
@@ -25,7 +25,8 @@ export class SampleService {
 
   async create(createDto: CreateSampleDto) {
     const cultive = await this.prisma.cultive.findUnique({
-      where: { id: createDto.cultiveId }, include: { samples: true }
+      where: { id: createDto.cultiveId },
+      include: { samples: true },
     });
 
     if (!cultive) throw new BadRequestException('Cultive not found');
@@ -50,7 +51,7 @@ export class SampleService {
     }
 
     console.log(createDto['samples']);
-    const samples = await this.prisma.cultiveSamples.createMany({data: [...createDto['samples'] as any]});
+    const samples = await this.prisma.cultiveSamples.createMany({ data: [...(createDto['samples'] as any)] });
     console.log('ok');
 
     await this.productivityService.setProductivity(cultive.id);
