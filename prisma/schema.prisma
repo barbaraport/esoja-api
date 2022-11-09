@@ -119,6 +119,9 @@ model CultiveSamples {
   stagePlantA Int
   stagePlantB Int
 
+  grainsPlantA Int
+  grainsPlantB Int
+
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 

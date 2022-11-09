@@ -26,7 +26,7 @@ export class ProductivityService {
     await this.prisma.cultive.update({
       where: { id: cultiveId },
       // data: { expectedProduction: tonPerHectares, expectedBagsPerHectares: bagsPerHectares },
-      data: {expectedProduction: 0},
+      data: { expectedProduction: 0 },
     });
   }
 

@@ -19,7 +19,7 @@ export class PropertyService {
 
     createDto.city = zipcodeData.city;
     createDto.state = zipcodeData.state;
-    createDto.ibgeCode = await getIbgeCode(zipcodeData.state, zipcodeData.city) + '';
+    createDto.ibgeCode = (await getIbgeCode(zipcodeData.state, zipcodeData.city)) + '';
 
     const property = await this.prisma.property.create({ data: createDto }).catch(() => {
       throw new BadRequestException('Error on create property');
