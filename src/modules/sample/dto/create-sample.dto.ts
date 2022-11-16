@@ -50,4 +50,12 @@ class SampleDto {
   @IsNumber()
   @IsOptional()
   podsPlantB?: number;
+
+  @IsNumber()
+  @IsOptional()
+  grainsPlantA?: number;
+
+  @IsNumber()
+  @IsOptional()
+  grainsPlantB?: number;
 }
