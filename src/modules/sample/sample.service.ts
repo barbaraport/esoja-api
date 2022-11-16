@@ -13,8 +13,8 @@ export class SampleService {
     private readonly productivityService: ProductivityService,
   ) {}
 
-  private async getPodsFoundForImage(base64Image: string) {
-    const response = await axios.post('http://localhost:5000/extractInformation', { base64Image: base64Image });
+  private async getPodsFoundForImage(base64Image: string, plantHeight: number) {
+    const response = await axios.post('http://localhost:5000/extractInformation', { base64Image: base64Image, plantHeight: plantHeight });
 
     const responseData = response.data as { podsFound: number; grainsFound: number };
 
@@ -40,8 +40,8 @@ export class SampleService {
     for (let i = 0; i < samplesData.length; i++) {
       const sampleData = samplesData[i];
 
-      const plantAData = await this.getPodsFoundForImage(sampleData['photoPlantA']);
-      const plantBData = await this.getPodsFoundForImage(sampleData['photoPlantB']);
+      const plantAData = await this.getPodsFoundForImage(sampleData['photoPlantA'], sampleData['heightPlantA']);
+      const plantBData = await this.getPodsFoundForImage(sampleData['photoPlantB'], sampleData['heightPlantB']);
 
       sampleData['podsPlantA'] = plantAData['podsFound'];
       sampleData['podsPlantB'] = plantBData['podsFound'];
